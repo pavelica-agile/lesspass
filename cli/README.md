@@ -8,6 +8,12 @@
 
     lesspass SITE [LOGIN] [MASTER_PASSWORD] [OPTIONS]
 
+The interactive terminal interface is available as:
+
+    lesspass-tui
+
+It provides the same LessPass password generation options in a keyboard-friendly form.
+
     LessPass is a stateless password manager.
 
     positional arguments:

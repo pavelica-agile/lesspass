@@ -1,6 +1,8 @@
 # python
 __pycache__/
 *.py[cod]
+*.swp
+*.swo
 # javascript
 node_modules
 package-lock.json

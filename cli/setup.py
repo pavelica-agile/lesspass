@@ -16,10 +16,11 @@ setuptools.setup(
     description="LessPass stateless password generator",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    install_requires=["requests"],
+    install_requires=["requests", "textual>=0.50"],
     entry_points="""
         [console_scripts]
         lesspass=lesspass.core:main
+        lesspass-tui=lesspass.tui:main
     """,
     url="https://github.com/lesspass/lesspass",
     license="GPL-3.0",
