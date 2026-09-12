@@ -50,7 +50,7 @@ def parse_args(args):
         "-v", "--version", action="version", version=version.__version__
     )
     parser.add_argument(
-        "site", nargs="?", help="site used in the password generation (required)"
+        "site", nargs="?", help="site used in the password generation (can also be a search pattern to filter profiles)"
     )
     parser.add_argument(
         "login", nargs="?", help="login used in the password generation. Default to ''."
@@ -112,7 +112,7 @@ def parse_args(args):
         nargs="?",
         const=backup_file,
         default=None,
-        help=f"[beta] Save your password profiles. /!\ File not encrypted. Use carefully. (default: {backup_file})",
+        help=f"[beta] Save your password profiles. \n!! File not encrypted. Use carefully. (default: {backup_file})",
     )
     parser.add_argument(
         "--load",
@@ -124,7 +124,7 @@ def parse_args(args):
         "--export",
         dest="export_file_path",
         default=None,
-        help="Export all your passwords from LessPass database with your master password. /!\ Please note that your passwords will be saved in clear text.",
+        help="Export all your passwords from LessPass database with your master password. \n!! Please note that your passwords will be saved in clear text.",
     )
     parser.add_argument(
         "--config-home-path",
@@ -137,6 +137,19 @@ def parse_args(args):
         dest="url",
         default="https://api.lesspass.com/",
         help="[beta] LessPass Database URL used by --save and --load command",
+    )
+    profiles_file = os.path.join(config_home_path, "profiles.csv")
+    parser.add_argument(
+        "--profiles",
+        dest="profiles_path",
+        default=profiles_file,
+        help=f"Path to CSV file containing profiles (default: {profiles_file})",
+    )
+    parser.add_argument(
+        "--list",
+        dest="list_profiles",
+        action="store_true",
+        help="List all saved profiles from CSV file",
     )
     lowercase_group = parser.add_mutually_exclusive_group()
     lowercase_group.add_argument(

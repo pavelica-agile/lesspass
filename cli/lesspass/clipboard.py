@@ -16,6 +16,9 @@ def _copy_available(command):
 
 
 def get_system_copy_command():
+    if _copy_available("termux-clipboard-set"):
+        return "termux-clipboard-set"
+
     if platform.system() == "Windows" and _copy_available("clip"):
         return "clip"
 
@@ -25,7 +28,7 @@ def get_system_copy_command():
     if os.getenv("WAYLAND_DISPLAY") is not None and _copy_available("wl-copy"):
         return "wl-copy"
 
-    for command in ["xsel", "xclip", "termux-clipboard-set"]:
+    for command in ["xsel", "xclip"]:
         if _copy_available(command):
             return command
 
@@ -35,12 +38,12 @@ def _popen(args, **kwargs):
 
 
 commands = {
+    "termux-clipboard-set": ["termux-clipboard-set"],
     "clip": ["clip"],
     "pbcopy": ["pbcopy"],
     "wl-copy": ["wl-copy"],
     "xsel": ["xsel", "--clipboard", "--input"],
     "xclip": ["xclip", "-selection", "clipboard"],
-    "termux-clipboard-set": ["termux-clipboard-set"],
 }
 
 
